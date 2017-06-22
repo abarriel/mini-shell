@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_fun.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 01:22:41 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/19 19:59:32 by abarriel         ###   ########.fr       */
+/*   Created: 2017/04/20 01:13:21 by abarriel          #+#    #+#             */
+/*   Updated: 2017/04/20 01:13:22 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	put_color(int fd, char color_nfun)
 
 void	color_fun__(t_stock *s)
 {
-	char *tmp;
-
 	if (ft_strncmp(s->str, "{6}", 3) == 0)
 		s->color_nfun = 6;
 	else if (ft_strncmp(s->str, "{7}", 3) == 0)
@@ -46,17 +44,10 @@ void	color_fun__(t_stock *s)
 		s->color_nfun = 8;
 	else if (ft_strncmp(s->str, "{9}", 3) == 0)
 		s->color_nfun = 9;
-	if (s->color_nfun > 0)
-	{
-		tmp = s->str;
-		s->str = ft_strsub(tmp, 3, ft_strlen(s->str) - 3);
-	}
 }
 
 void	color_fun_(t_stock *s)
 {
-	char *tmp;
-
 	if (ft_strncmp(s->str, "{1}", 3) == 0)
 		s->color_nfun = 1;
 	else if (ft_strncmp(s->str, "{2}", 3) == 0)
@@ -71,11 +62,6 @@ void	color_fun_(t_stock *s)
 	{
 		color_fun__(s);
 		return ;
-	}
-	if (s->color_nfun > 0)
-	{
-		tmp = s->str;
-		s->str = ft_strsub(tmp, 3, ft_strlen(s->str) - 3);
 	}
 }
 

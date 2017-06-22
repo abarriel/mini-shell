@@ -12,7 +12,7 @@
 
 NAME	= minishell
 
-SRC		= minishell.c
+SRC		= minishell.c init.c load.c print.c
 
 OBJ		= $(addprefix srcs/,$(SRC:.c=.o))
 
@@ -27,14 +27,15 @@ libft:
 
 $(NAME): libft $(OBJ) $(INCLUDES)
 	@gcc $(OBJ) -o $(NAME)  -Llibft -lft
+	@echo ""
 
 clean:
-	@make clean -C libft
+	# @make clean -C libft
 	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -rf $(NAME) $(OBJ)
-	@make fclean -C libft
+	# @make fclean -C libft
 
 re: fclean all
 

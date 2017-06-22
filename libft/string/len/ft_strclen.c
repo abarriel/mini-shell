@@ -1,30 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_split.c                                       :+:      :+:    :+:   */
+/*   ft_strclen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/19 05:57:18 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/20 09:08:41 by abarriel         ###   ########.fr       */
+/*   Created: 2017/03/22 04:01:40 by abarriel          #+#    #+#             */
+/*   Updated: 2017/03/24 03:47:29 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** FREE INSTEAD OF FT_STRDEL NEED TO CHANGE IT
-*/
-
-void	free_split(char **tab)
+size_t		ft_strclen(const char *s, char c)
 {
-	int i;
+	size_t	len;
 
+	len = 0;
+	while (s[len] != '\0' && s[len] != c)
+		len++;
+	return (len);
+}
+
+size_t		ft_strslen(const char *s, char *c)
+{
+	size_t	len;
+	size_t	i;
+
+	len = 0;
 	i = 0;
-	while (tab[i])
+	while (s[len] != '\0')
 	{
-		ft_strdel(&tab[i]);
-		i++;
+		while (c[i] != '\0')
+		{
+			if (s[len] == c[i])
+				return (len);
+			i++;
+		}
+		i = 0;
+		len++;
 	}
-	free(tab);
+	return (len);
 }

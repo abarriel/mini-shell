@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 04:40:56 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/06 07:46:39 by abarriel         ###   ########.fr       */
+/*   Created: 2017/03/19 22:42:36 by abarriel          #+#    #+#             */
+/*   Updated: 2017/03/20 05:15:58 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+char	*ft_strndup(const char *s, size_t i)
 {
-	return (c >= '0' && c <= '9');
-}
+	char	*d;
 
-int	ft_sdigit(char *c)
-{
-	if (*c == '-' || *c == '+')
-		c++;
-	if (*c == '\0')
-		return (1);
-	while (*c)
-	{
-		if (*c != '\0' && (*c < '0' || *c > '9'))
-			return (1);
-		c++;
-	}
-	return (0);
+	if (!(d = (char*)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	d[i] = '\0';
+	ft_memcpy(d, s, i);
+	return (d);
 }

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   char_to_ui.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 01:07:56 by abarriel          #+#    #+#             */
-/*   Updated: 2016/11/12 03:45:59 by abarriel         ###   ########.fr       */
+/*   Created: 2017/04/20 01:05:20 by abarriel          #+#    #+#             */
+/*   Updated: 2017/04/20 01:05:58 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+unsigned int	chatohi(unsigned char *str)
 {
-	while (lst)
-	{
-		(*f)(lst);
-		lst = lst->next;
-	}
+	unsigned int	final;
+
+	final = 0;
+	final |= ((unsigned int)(str)[0] << 8);
+	final |= ((unsigned int)(str)[1]);
+	return (final);
 }

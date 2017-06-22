@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   char_to_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 00:51:41 by abarriel          #+#    #+#             */
-/*   Updated: 2016/11/12 01:07:22 by abarriel         ###   ########.fr       */
+/*   Created: 2017/04/20 01:05:16 by abarriel          #+#    #+#             */
+/*   Updated: 2017/04/20 01:06:15 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+unsigned int	chatoi(unsigned char *str)
 {
-	t_list *list;
+	unsigned int	final;
 
-	list = new;
-	list->next = *alst;
-	*alst = list;
+	final = 0;
+	final |= ((unsigned int)(str)[0] << 24);
+	final |= ((unsigned int)(str)[1] << 16);
+	final |= ((unsigned int)(str)[2] << 8);
+	final |= ((unsigned int)(str)[3]);
+	return (final);
 }

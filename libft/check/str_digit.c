@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   str_digit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 01:13:57 by abarriel          #+#    #+#             */
-/*   Updated: 2016/11/12 03:47:40 by abarriel         ###   ########.fr       */
+/*   Created: 2017/04/20 01:13:02 by abarriel          #+#    #+#             */
+/*   Updated: 2017/04/20 01:13:05 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+int	ft_sdigit(char *c)
 {
-	t_list *new;
-	t_list *tmp;
-
-	new = NULL;
-	if (lst && f)
+	if (*c == '-' || *c == '+')
+		c++;
+	if (*c == '\0')
+		return (1);
+	while (*c)
 	{
-		new = f(lst);
-		tmp = new;
-		while (lst->next)
-		{
-			tmp->next = (*f)(lst->next);
-			tmp = tmp->next;
-			lst = lst->next;
-		}
+		if (*c != '\0' && (*c < '0' || *c > '9'))
+			return (1);
+		c++;
 	}
-	return (new);
+	return (0);
 }

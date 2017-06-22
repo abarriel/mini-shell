@@ -57,12 +57,21 @@ int		ft_printf(const char *format, ...)
 	return (ft_vdprintf(s));
 }
 
+int		f(const char *format, ...)
+{
+	t_stock	*s;
+
+	s = set_stock(format, 1);
+	va_start(s->aps, format);
+	return (ft_vdprintf(s));
+}
+
 int		ft_vdprintf(t_stock *s)
 {
 	size_t	flen;
 
 	color_fun(s);
-	flen = putstr_per(s->str, s->fd);
+	flen = putstr_per_first(s->str, s->fd, s->color_nfun);
 	ft_init(s);
 	flen += s->f_len;
 	va_end(s->aps);

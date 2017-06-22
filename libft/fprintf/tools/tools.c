@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 23:12:00 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/20 05:46:25 by abarriel         ###   ########.fr       */
+/*   Updated: 2017/01/09 00:31:00 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,23 @@ int		putstr_per(char *str, int fd)
 	while (str[i] && str[i] != '%')
 		i++;
 	write(fd, str, i);
+	return (i);
+}
+
+int		putstr_per_first(char *str, int fd, int color)
+{
+	size_t i;
+
+	i = 0;
+	if (color > 0)
+		i = 3;
+	while (str[i] && str[i] != '%')
+	{
+		ft_putchar_fd(str[i], fd);
+		i++;
+	}
+	if (color > 0)
+		i -= 3;
 	return (i);
 }
 

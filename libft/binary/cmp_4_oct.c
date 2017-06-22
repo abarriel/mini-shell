@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdl.c                                         :+:      :+:    :+:   */
+/*   cmp_4_oct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 00:28:39 by abarriel          #+#    #+#             */
-/*   Updated: 2016/11/12 04:02:23 by abarriel         ###   ########.fr       */
+/*   Created: 2017/04/20 01:05:24 by abarriel          #+#    #+#             */
+/*   Updated: 2017/04/20 01:06:03 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+int	cmp_4_oct(unsigned char *one, unsigned char *two)
 {
-	t_list *new;
-
-	if (alst && del)
-	{
-		while (*alst)
-		{
-			new = (*alst)->next;
-			ft_lstdelone(alst, del);
-			(*alst) = new;
-		}
-		(*alst) = NULL;
-	}
+	if (one[0] == two[0] && one[1] == two[1] &&
+		one[2] == two[2] && one[3] == two[3])
+		return (1);
+	return (0);
 }

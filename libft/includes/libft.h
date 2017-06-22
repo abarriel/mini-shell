@@ -6,7 +6,7 @@
 /*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 21:11:10 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/20 01:10:10 by abarriel         ###   ########.fr       */
+/*   Updated: 2017/03/24 03:46:47 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,28 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+int print_table(char **tab);
+unsigned int		chatohi(unsigned char *str);
+unsigned int		chatoi(unsigned char *str);
+int					cmp_4_oct(unsigned char *one, unsigned char *two);
+int					ft_pow_base(int x, unsigned int y);
+int					btoi(int bin);
+size_t				swap_st(size_t val);
+unsigned short int	swap_usint(unsigned short int val);
+short int			swap_sint(short int val);
+unsigned int		swap_uint(unsigned int val);
+int					swap_int(int val);
+size_t				ft_strslen(const char *s, char *c);
+size_t				ft_strlchr(char *s, int c);
+char				*ft_strcchr(const char *s, int c, char stop);
+size_t				ft_strclen(const char *s, char c);
+char				*ft_strccpy(char *dest, const char *src, char c);
 void				print_memory(const void *addr, size_t size);
 char				*ft_strndup(const char *s, size_t i);
 int					ft_strrncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strrcpy(char *s);
 int					ext(const char *message, int i);
-void				free_split(char **tab);
+void				free_tab(char **tab);
 int					ft_sdigit(char *c);
 long				ft_atol(const char *str);
 int					ft_atoi_p(char **s);

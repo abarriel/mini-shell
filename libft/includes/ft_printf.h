@@ -127,6 +127,7 @@ void				print_c(t_flag *f, t_conv *c);
 void				print_d(t_flag *f, t_conv *c);
 void				print_base(t_flag *f, t_conv *c);
 int					putstr_per(char *str, int fd);
+int					putstr_per_first(char *str, int fd, int color);
 void				ft_putnwstr(t_conv *c, t_flag *f);
 int					ft_putnwchar(t_conv *c, t_flag *f);
 /*
@@ -140,5 +141,5 @@ int					if_so(char conv, char *symb);
 void				get_bonus(t_stock *t, t_flag *f);
 void				color_fun(t_stock *s);
 void				put_color(int fd, char color_nfun);
-
+int         f(const char *format, ...);
 #endif

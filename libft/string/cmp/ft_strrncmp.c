@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_strrncmp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/19 22:42:36 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/20 05:13:53 by abarriel         ###   ########.fr       */
+/*   Created: 2017/04/20 01:17:06 by abarriel          #+#    #+#             */
+/*   Updated: 2017/04/20 01:17:09 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(const char *s, size_t i)
+int		ft_strrncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*d;
+	char	*r1;
+	int		i;
 
-	if (!(d = (char*)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	d[i] = '\0';
-	ft_memcpy(d, s, i);
-	return (d);
+	i = 0;
+	r1 = ft_strrcpy((char *)s1);
+	if (n == 0)
+		return (0);
+	else
+	{
+		while (--n && *r1 && *s2 && r1[i] == s2[i])
+		{
+			i++;
+		}
+	}
+	i = r1[i] - s2[i];
+	ft_strdel(&r1);
+	return (i);
 }
