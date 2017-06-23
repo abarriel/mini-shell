@@ -12,7 +12,7 @@
 
 NAME	= minishell
 
-SRC		= minishell.c init.c load.c print.c
+SRC		= minishell.c init.c load.c print.c exec.c builtin.c built_func.c env.c find.c
 
 OBJ		= $(addprefix srcs/,$(SRC:.c=.o))
 

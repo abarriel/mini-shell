@@ -59,13 +59,17 @@ t_sh *init_sh(void)
 
     if (!(e = (t_sh*)malloc(sizeof(t_sh))))
   		  ft_exit("Failed to Malloc ");
-    // e->parent = getpid();
-    // e->pid = fork();
     e->path = NULL;
     e->environ = NULL;
     e->env = NULL;
     e->full_path = NULL;
     e->line = NULL;
     e->args = NULL;
+    e->func[0] = &cd_f;
+    e->func[1] = &exit_f;
+    e->func[2] = &env_f;
+    e->func[3] = &setenv_f;
+    e->func[4] = &unsetenv_f;
+    e->func[5] = &echo_f;
     return e;
 }

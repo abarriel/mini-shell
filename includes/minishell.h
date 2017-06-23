@@ -23,6 +23,8 @@
 # include <fcntl.h>
 # include <signal.h>
 
+extern char *built_str[6];
+
 typedef struct  s_path
 {
   char          *name;
@@ -48,12 +50,27 @@ typedef struct		s_sh
   char      *full_path;
   t_path    *path;
   char      **args;
+  int       (*func[6])(struct s_sh *sh);
 }					  t_sh;
+/* INIT */
+int change_env(t_env *e, char *name, char *value);
+t_sh  *init_sh(void);
 int   load_env(t_sh *sh);
+void	add_back_env(t_env **p, char *name, char *value);
+void	add_back_path(t_path **p, char *name);
+char *find_env(t_env *e, char *name);
+/* EXECUTE */
+int   execute(t_sh *sh);
 int   load_path(t_sh *sh);
-int print_path(t_path *p);
-int print_env(t_env *p);
-void		add_back_env(t_env **p, char *name, char *value);
-void		add_back_path(t_path **p, char *name);
-t_sh *init_sh(void);
+
+/* BUILTIN */
+int echo_f(t_sh *sh);
+int cd_f(t_sh *sh);
+int exit_f(t_sh *sh);
+int setenv_f(t_sh *sh);
+int unsetenv_f(t_sh *sh);
+int env_f(t_sh *sh);
+/* PRINT */
+int   print_path(t_path *p);
+int   print_env(t_env *p);
 #endif

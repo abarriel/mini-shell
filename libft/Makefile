@@ -30,6 +30,7 @@ check/ft_isupper.c \
 check/str_digit.c \
 \
 else/ft_exit.c \
+else/concat_tab.c \
 else/ft_tolower.c \
 else/ft_toupper.c \
 \

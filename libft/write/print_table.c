@@ -7,8 +7,9 @@ int print_table(char **tab)
     i = 0;
     while (tab[i])
     {
-      ft_putendl(tab[i]);
+      f("{7}[%s] ",tab[i]);
       i++;
     }
-    return (i); 
+    ft_putchar('\n');
+    return (i);
 }

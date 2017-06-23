@@ -12,40 +12,36 @@
 
 #include "libft.h"
 
-static int		ft_strnblanks(char *s, int ln)
+
+char	*ft_strtri(char const *s)
 {
-	while (s[ln - 1] == ' ' || s[ln - 1] == '\t' || s[ln - 1] == '\n')
-	{
-		if (s[ln - 1] == ' ' || s[ln - 1] == '\t' || s[ln - 1] == '\n')
-		{
-			ln--;
-			ft_strnblanks(s, ln);
-		}
-	}
-	return (ln);
+	char	*result;
+	int		i[2];
+	int		j;
+	int		n;
+
+	if (s == NULL)
+		return (NULL);
+	i[0] = 0;
+	j = ft_strlen(s) - 1;
+	n = 0;
+	while (s[i[0] + n] == ' ' || s[i[0] + n] == '\n' || s[i[0] + n] == '\t')
+		n++;
+	while (s[j - i[0]] == ' ' || s[j - i[0]] == '\n' || s[j - i[0]] == '\t')
+		i[0]++;
+	if (j + 1 == n)
+		i[0] = 0;
+	result = malloc(sizeof(char) * (j - n - i[0] + 2));
+	if (result == NULL)
+		return (NULL);
+	i[1] = 0;
+	while (i[1] <= j - n - i[0] && j != n)
+		result[i[1]++] = s[n + i[1]];
+	result[i[1]] = '\0';
+	return (result);
 }
 
 char			*ft_strtrim(char const *s1)
 {
-	char	*dst;
-	char	*s;
-	int		i;
-	int		len;
-	int		nlen;
-
-	i = 0;
-	if (!s1)
-		return (NULL);
-	len = ft_strlen(s1);
-	nlen = ft_strnblanks((char*)s1, len);
-	s = (char*)s1;
-	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n')
-		i++;
-	if (nlen - i <= 0)
-		return (ft_strnew(0));
-	dst = (char*)malloc(sizeof(char) * (nlen - i));
-	if (!dst)
-		return (NULL);
-	dst = ft_strsub(s, i, nlen - i);
-	return (dst);
+	return (ft_strtri(s1));
 }

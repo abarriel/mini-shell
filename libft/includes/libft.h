@@ -25,6 +25,8 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+int   len_tab(char **t1);
+char **concat_tab(char **t1, char **t2);
 int print_table(char **tab);
 unsigned int		chatohi(unsigned char *str);
 unsigned int		chatoi(unsigned char *str);

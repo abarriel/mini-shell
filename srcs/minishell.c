@@ -12,41 +12,59 @@
 
 #include "minishell.h"
 
-int launch(t_sh *sh)
+char *clean_space(char *src)
 {
-  sh->pid = fork();
-  if (sh->pid == 0) {
-    // child process
-    char *str = ft_strjoin("/bin/",sh->args[0]);
-    if (execve(str, sh->args, 0) == -1) {
-      f("lsh");
-    }
-    exit(1);
-  }
-  if(sh->pid < 0)
+  int i;
+
+  i = 0;
+  while(src[i])
   {
-    // Eroor Forking;
-    perror("lsh");
+    if(src[i] == '\t')
+      src[i] = ' ';
+    i++;
   }
-  else {
-    sh->wpid = waitpid(sh->pid, &sh->status, 0);
-  }
-  return 1;
+  return src;
+}
+
+char **get_args(char *line_not_trimed)
+{
+    char  **tab = NULL;
+    char  **tmp = NULL;
+    char  **new = NULL;
+    char  *trimed = NULL;
+
+    trimed = ft_strtrim(line_not_trimed);
+    tab = ft_strsplit(trimed, '"');
+    free(trimed);
+    if (tab[0] == NULL)
+    return tab;
+    free(tab[0]);
+    tab[0] = ft_strtrim(tab[0]);
+    tab[0] = clean_space(tab[0]);
+    tmp = ft_strsplit(tab[0],' ');
+    new = concat_tab(tmp, tab + 1);
+    free_tab(tmp);
+    free_tab(tab);
+    return new;
 }
 
 int   loop(t_sh *sh)
 {
   while (write(1, "$> ", 3) && get_next_line(0, &sh->line))
     {
-      sh->args = ft_strsplit(sh->line, ' ');
-      // (sh);
-      launch(sh);
+      sh->args = get_args(sh->line);
+      execute(sh);
       free(sh->line);
       free_tab(sh->args);
     }
   return (0);
 }
 
+int test(t_sh *sh)
+{
+  write(1,"d \"-n ok" "d -n ok",19);
+  exit(0);
+}
 int		main(void)
 {
   t_sh *sh;
@@ -54,13 +72,11 @@ int		main(void)
 
   i = 0;
   sh = init_sh();
+  // test(sh);
   load_env(sh);
   load_path(sh);
-  print_env(sh->environ);
-  print_path(sh->path);
-  // while(1)
-    // ;
-  // print_table(sh->environ);
+  // print_path(sh->path);
+  // while(1) ;
   loop(sh);
   return (0);
 }
