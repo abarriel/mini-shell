@@ -1,35 +1,74 @@
 #include "minishell.h"
 
+int find_bin(t_sh *sh, char **envp)
+{
+    char *str;
+    struct stat sb;
+    char *path;
+    str = NULL;
+    while (sh->path)
+    {
+      path = ft_strjoin(sh->path->name, "/");
+      str = ft_strjoin(path, sh->args[0]);
+      if(!stat(str, &sb))
+        {
+          if (execve(str, sh->args, envp) == -1)
+            break;
+          return 0;
+        }
+      sh->path = sh->path->next;
+    }
+    f("minishell: comand not found: %s\n", sh->args[0]);
+    return (1);
+}
+
+int   len_list(t_env *env)
+{
+  int len;
+
+  len = 0;
+  while (env)
+  {
+    len++;
+    env = env->next;
+  }
+  return len;
+}
+
+char  **get_env(t_sh *sh, t_env *env)
+{
+  char **envp;
+  int len;
+  int i;
+  char *single_env;
+
+  len = len_list(env);
+  i = 0;
+  envp = (char **)malloc(sizeof(char *) * len + 1);
+  while (env)
+  {
+    envp[i] = ft_strjoin_three(env->name,"=", env->value);
+    env = env->next;
+    i++;
+  }
+  envp[i] = NULL;
+  return envp;
+}
+
 int launch(t_sh *sh)
 {
   char *str;
+  char **envp;
+
   sh->pid = fork();
-  if (sh->pid == 0) {
-    // child process
-    if (!ft_strcmp(sh->args[0],"tenv"))
+  envp = get_env(sh, sh->environ);
+  if (sh->pid == 0)
+  {
+    if (execve(sh->args[0], sh->args, envp) == -1)
     {
-      char *argv[] = { "/bin/sh", "-c", "env", 0 };
-   char *envp[] =
-   {
-       "HOME=/",
-       "PATH=/bin:/usr/bin",
-       "TZ=UTC0",
-       "USER=beelzebub",
-       "LOGNAME=tarzan",
-       0
-   };
-   execve(argv[0], &argv[0], envp);
-        execvp("env", sh->args);
-          exit(1);
+      find_bin(sh, envp);
     }
-    else
-        str = ft_strjoin("/bin/",sh->args[0]);
-    if (execve(sh->args[0], sh->args, 0) == -1)
-    {
-      if (execve(str, sh->args, 0) == -1) {
-        f("minishell: command not found: %s\n", sh->args[0]);
-      }
-    }
+    free_tab(envp);
     exit(1);
   }
   if(sh->pid < 0)
@@ -41,6 +80,7 @@ int launch(t_sh *sh)
   else {
     sh->wpid = waitpid(sh->pid, &sh->status, 0);
   }
+  free_tab(envp);
   return 1;
 }
 

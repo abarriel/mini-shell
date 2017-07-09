@@ -72,11 +72,8 @@ int		main(void)
 
   i = 0;
   sh = init_sh();
-  // test(sh);
   load_env(sh);
   load_path(sh);
-  // print_path(sh->path);
-  // while(1) ;
   loop(sh);
   return (0);
 }
