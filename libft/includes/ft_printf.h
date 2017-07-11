@@ -6,7 +6,7 @@
 /*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 16:48:55 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/19 19:56:53 by abarriel         ###   ########.fr       */
+/*   Updated: 2017/07/11 23:44:02 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,5 @@ int					if_so(char conv, char *symb);
 void				get_bonus(t_stock *t, t_flag *f);
 void				color_fun(t_stock *s);
 void				put_color(int fd, char color_nfun);
-int         f(const char *format, ...);
+int					f(const char *format, ...);
 #endif

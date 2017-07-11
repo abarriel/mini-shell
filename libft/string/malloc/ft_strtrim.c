@@ -6,12 +6,11 @@
 /*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 02:55:41 by abarriel          #+#    #+#             */
-/*   Updated: 2016/12/12 16:33:12 by abarriel         ###   ########.fr       */
+/*   Updated: 2017/07/11 23:45:15 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 char	*ft_strtri(char const *s)
 {
@@ -41,7 +40,7 @@ char	*ft_strtri(char const *s)
 	return (result);
 }
 
-char			*ft_strtrim(char const *s1)
+char	*ft_strtrim(char const *s1)
 {
 	return (ft_strtri(s1));
 }

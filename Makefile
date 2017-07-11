@@ -6,13 +6,13 @@
 #    By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/19 11:33:06 by abarriel          #+#    #+#              #
-#    Updated: 2017/03/20 09:24:49 by abarriel         ###   ########.fr        #
+#    Updated: 2017/07/11 23:41:52 by abarriel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= minishell
 
-SRC		= minishell.c init.c load.c print.c exec.c builtin.c built_func.c env.c find.c
+SRC		= minishell.c init.c load.c print.c exec.c builtin.c env.c find.c
 
 OBJ		= $(addprefix srcs/,$(SRC:.c=.o))
 
@@ -30,12 +30,12 @@ $(NAME): libft $(OBJ) $(INCLUDES)
 	@echo ""
 
 clean:
-	# @make clean -C libft
+	@make clean -C libft
 	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -rf $(NAME) $(OBJ)
-	# @make fclean -C libft
+	@make fclean -C libft
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 21:11:10 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/24 03:46:47 by abarriel         ###   ########.fr       */
+/*   Updated: 2017/07/11 23:44:22 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-int   len_tab(char **t1);
-char **concat_tab(char **t1, char **t2);
-int print_table(char **tab);
+int					len_tab(char **t1);
+char				**concat_tab(char **t1, char **t2);
+int					print_table(char **tab);
 unsigned int		chatohi(unsigned char *str);
 unsigned int		chatoi(unsigned char *str);
 int					cmp_4_oct(unsigned char *one, unsigned char *two);

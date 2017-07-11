@@ -6,7 +6,7 @@
 /*   By: abarriel <abarriel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 11:33:00 by abarriel          #+#    #+#             */
-/*   Updated: 2017/03/21 23:56:05 by abarriel         ###   ########.fr       */
+/*   Updated: 2017/07/11 23:39:15 by abarriel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,48 @@
 # include <fcntl.h>
 # include <signal.h>
 
-extern char *built_str[6];
-
-typedef struct  s_path
+typedef struct	s_path
 {
-  char          *name;
-  struct s_path *next;
-}            t_path;
+	char			*name;
+	struct s_path	*next;
+}				t_path;
 
-typedef struct  s_env
+typedef struct	s_env
 {
-  char          *name;
-  char          *value;
-  struct s_env *next;
-}            t_env;
+	char			*name;
+	char			*value;
+	struct s_env	*next;
+}				t_env;
 
-typedef struct		s_sh
+typedef struct	s_sh
 {
-  int       status;
-  t_env     *environ;
-  char      **env;
-  pid_t     wpid;
-  pid_t     pid;
-	int				start;
-  char      *line;
-  char      *full_path;
-  t_path    *path;
-  char      **args;
-  int       (*func[6])(struct s_sh *sh);
-}					  t_sh;
-/* INIT */
-int change_env(t_env *e, char *name, char *value);
-t_sh  *init_sh(void);
-int   load_env(t_sh *sh);
-void	add_back_env(t_env **p, char *name, char *value);
-void	add_back_path(t_path **p, char *name);
-char *find_env(t_env *e, char *name);
-/* EXECUTE */
-int   execute(t_sh *sh);
-int   load_path(t_sh *sh);
+	int		status;
+	t_env	*environ;
+	char	**env;
+	pid_t	wpid;
+	pid_t	pid;
+	int		start;
+	char	*line;
+	char	*full_path;
+	t_path	*path;
+	char	**args;
+	int		(*func[6])(struct s_sh *sh);
+}				t_sh;
 
-/* BUILTIN */
-int echo_f(t_sh *sh);
-int cd_f(t_sh *sh);
-int exit_f(t_sh *sh);
-int setenv_f(t_sh *sh);
-int unsetenv_f(t_sh *sh);
-int env_f(t_sh *sh);
-/* PRINT */
-int   print_path(t_path *p);
-int   print_env(t_env *p);
+int				change_env(t_env *e, char *name, char *value);
+t_sh			*init_sh(void);
+int				load_env(t_sh *sh);
+void			add_back_env(t_env **p, char *name, char *value);
+void			add_back_path(t_path **p, char *name);
+char			*find_env(t_env *e, char *name);
+int				execute(t_sh *sh);
+int				load_path(t_sh *sh);
+int				echo_f(t_sh *sh);
+int				cd_f(t_sh *sh);
+int				exit_f(t_sh *sh);
+int				setenv_f(t_sh *sh);
+int				unsetenv_f(t_sh *sh);
+int				env_f(t_sh *sh);
+int				print_path(t_path *p);
+int				print_env(t_env *p);
 #endif

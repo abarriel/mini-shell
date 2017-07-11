@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_table.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarriel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/07/11 23:45:34 by abarriel          #+#    #+#             */
+/*   Updated: 2017/07/11 23:45:55 by abarriel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int print_table(char **tab)
+int	print_table(char **tab)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (tab[i])
-    {
-      f("{7}[%s] ",tab[i]);
-      i++;
-    }
-    ft_putchar('\n');
-    return (i);
+	i = 0;
+	while (tab[i])
+	{
+		f("{7}[%s] ", tab[i]);
+		i++;
+	}
+	ft_putchar('\n');
+	return (i);
 }
